@@ -1,3 +1,4 @@
+import { SocialLoginModule } from 'angularx-social-login';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -19,6 +20,7 @@ import { AuthModule } from './modules/auth/auth.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SocialLoginModule,
     UserModule,
     AuthModule,
   ],

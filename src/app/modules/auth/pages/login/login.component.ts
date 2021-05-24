@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  reactiveForm: FormGroup;
+  user = {} as SocialUser;
+  isSignedin: boolean;  
+
+  constructor(private fb: FormBuilder, private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
+    this.reactiveForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.isSignedin = (user != null);
+      console.log(this.user);
+    });
+  }
+
+  googleSignin(): void {
+    debugger;
+    var storage = this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    console.log(storage);
+  }
+
+  logout(): void {
+    this.socialAuthService.signOut();
   }
 
 }
