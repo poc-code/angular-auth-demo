@@ -7,6 +7,7 @@ import { AuthRoutingModule } from './auth-routing/auth-routing.module';
 import { RouterModule } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     LoginComponent,
     LogoutComponent,
-    AuthHomeComponent
+    AuthHomeComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

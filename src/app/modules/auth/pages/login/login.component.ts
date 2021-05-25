@@ -24,14 +24,15 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
       this.isSignedin = (user != null);
-      console.log(this.user);
+      localStorage.setItem('token', this.user.idToken);
     });
   }
 
   googleSignin(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
     debugger;
-    var storage = this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    console.log(storage);
+    localStorage.setItem('token', this.user.idToken);
+    console.log(this.user);
   }
 
   logout(): void {
